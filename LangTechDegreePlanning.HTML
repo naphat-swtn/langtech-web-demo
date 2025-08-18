@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What is LangTech? | LangTech Chula</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Prompt', sans-serif; }
+  </style>
+</head>
+<body class="bg-black text-white font-prompt text-base leading-relaxed">
+
+<!-- Navbar (Responsive) -->
+<nav class="bg-black bg-opacity-75 sticky top-0 z-50 font-prompt">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-14 py-3">
+        <!-- Logo -->
+        <div class="flex-shrink-0">
+            <img src="LangTechLogo.png" alt="LangTech Logo" class="h-12 md:h-16" />
+        </div>
+        <!-- Hamburger (Mobile) -->
+        <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none text-2xl">
+            <svg class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+        </button>
+        <!-- Desktop Menu -->
+        <ul class="hidden md:flex gap-3 text-white px-2 md:px-6 items-center">
+            <li><a href="Homepage.HTML" class="hover:text-pink-400 px-3 py-2">หน้าแรก</a></li>
+            <li><a href="admission.HTML" class="hover:text-pink-400 px-3 py-2">แอดมิชชั่น</a></li>
+            <li class="relative" id="dropdown-course">
+                <a href="#" id="dropdown-toggle" class="hover:text-pink-400 px-3 py-2 flex items-center">
+                    หลักสูตร ▾
+                </a>
+                <ul id="dropdown-menu" class="absolute left-0 mt-2 w-56 bg-black border border-gray-800 rounded shadow-lg opacity-0 pointer-events-none transition-opacity duration-200 z-50">
+                    <li>
+                        <a href="WhatIsLangTech.HTML" class="block px-4 py-2 hover:bg-pink-900 hover:text-white rounded-t">
+                            แลงเทคคืออะไร ?
+                        </a>
+                    </li>
+                    <li>
+                        <a href="LangTechDegreePlanning.HTML" class="block px-4 py-2 hover:bg-pink-900 hover:text-white rounded-b">
+                            รูปแบบหลักสูตรและวิชา
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="relative" id="dropdown-life">
+                <a href="#" id="dropdown-life-toggle" class="hover:text-pink-400 px-4 py-2 flex items-center">
+                    ชีวิตในรั้วแลงเทค ▾
+                </a>
+                <ul id="dropdown-life-menu" class="absolute left-0 mt-2 w-56 bg-black border border-gray-800 rounded shadow-lg opacity-0 pointer-events-none transition-opacity duration-200 z-50">
+                    <li>
+                        <a href="LifeAtLangTech.HTML" class="block px-4 py-2 hover:bg-pink-900 hover:text-white rounded-t">
+                            กิจกรรม
+                        </a>
+                    </li>
+                    <li>
+                        <a href="SeniorProject.HTML" class="block px-4 py-2 hover:bg-pink-900 hover:text-white rounded-b">
+                            ซีเนียร์โปรเจค
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="relative" id="dropdown-review">
+                <a href="#" id="dropdown-review-toggle" class="hover:text-pink-400 px-4 py-2 flex items-center">
+                    รีวิว ▾
+                </a>
+                <ul id="dropdown-review-menu" class="absolute left-0 mt-2 w-56 bg-black border border-gray-800 rounded shadow-lg opacity-0 pointer-events-none transition-opacity duration-200 z-50">
+                    <li>
+                        <a href="SeniorReview.HTML" class="block px-4 py-2 hover:bg-pink-900 hover:text-white rounded-t">
+                            รีวิวจากรุ่นพี่
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Career.HTML" class="block px-4 py-2 hover:bg-pink-900 hover:text-white rounded-b">
+                            อาชีพและอนาคต
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="Teacher_Staff.HTML" class="hover:text-pink-400 px-4 py-2">บุคลากร</a></li>
+        </ul>
+    </div>
+
+    <!-- Mobile Menu (hidden by default) -->
+    <div id="mobile-menu" class="md:hidden fixed inset-0 bg-black bg-opacity-95 z-50 flex flex-col items-center pt-24 space-y-6 text-lg font-prompt transition-all duration-300 opacity-0 pointer-events-none" style="font-family: 'Prompt', sans-serif;">
+        <button id="mobile-menu-close" class="absolute top-6 right-6 text-white text-3xl focus:outline-none">
+            &times;
+        </button>
+        <a href="Homepage.HTML" class="hover:text-pink-400 px-4 py-2 block w-full text-center">หน้าแรก</a>
+        <a href="admission.HTML" class="hover:text-pink-400 px-4 py-2 block w-full text-center">แอดมิชชั่น</a>
+        <!-- Mobile Dropdown: หลักสูตร -->
+        <div class="w-full flex flex-col items-center">
+            <button id="mobile-dropdown-toggle" class="hover:text-pink-400 px-4 py-2 flex items-center w-full justify-center">
+                หลักสูตร ▾
+            </button>
+            <div id="mobile-dropdown-menu" class="flex flex-col w-full items-center space-y-1 hidden">
+                <a href="WhatIsLangTech.HTML" class="block px-4 py-2 hover:bg-pink-900 hover:text-white w-full text-center">แลงเทคคืออะไร ?</a>
+                <a href="LangTechDegreePlanning.HTML" class="block px-4 py-2 hover:bg-pink-900 hover:text-white w-full text-center">รูปแบบหลักสูตรและวิชา</a>
+            </div>
+        </div>
+        <!-- Mobile Dropdown: ชีวิตในรั้วแลงเทค -->
+        <div class="w-full flex flex-col items-center">
+            <button id="mobile-life-toggle" class="hover:text-pink-400 px-4 py-2 flex items-center w-full justify-center">
+                ชีวิตในรั้วแลงเทค ▾
+            </button>
+            <div id="mobile-life-menu" class="flex flex-col w-full items-center space-y-1 hidden">
+                <a href="LifeAtLangTech.HTML" class="block px-4 py-2 hover:bg-pink-900 hover:text-white w-full text-center">กิจกรรม</a>
+                <a href="SeniorProject.HTML" class="block px-4 py-2 hover:bg-pink-900 hover:text-white w-full text-center">ซีเนียร์โปรเจค</a>
+            </div>
+        </div>
+        <!-- Mobile Dropdown: รีวิว -->
+        <div class="w-full flex flex-col items-center">
+            <button id="mobile-review-toggle" class="hover:text-pink-400 px-4 py-2 flex items-center w-full justify-center">
+                รีวิว ▾
+            </button>
+            <div id="mobile-review-menu" class="flex flex-col w-full items-center space-y-1 hidden">
+                <a href="SeniorReview.HTML" class="block px-4 py-2 hover:bg-pink-900 hover:text-white w-full text-center">รีวิวจากรุ่นพี่</a>
+                <a href="Career.HTML" class="block px-4 py-2 hover:bg-pink-900 hover:text-white w-full text-center">อาชีพและอนาคต</a>
+            </div>
+        </div>
+        <a href="Teacher_Staff.HTML" class="hover:text-pink-400 px-4 py-2 block w-full text-center">บุคลากร</a>
+    </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="max-w-7xl mx-auto px-4 md:px-12 py-6 md:py-8 text-white text-base font-prompt">
+  <span class="opacity-70">หน้าหลัก</span>
+  <span class="mx-2">/</span>
+  <span class="opacity-70">หลักสูตร</span>
+  <span class="mx-2">/</span>
+  <span>รูปแบบหลักสูตรและวิชา</span>
+</div>
+
+<section class="relative z-10 bg-black">
+    <div class="max-w-7xl mx-auto px-4 md:px-12 pt-8 pb-12">
+        <!-- Title -->
+        <div class="mb-8">
+            <h1 class="text-3xl md:text-5xl font-light tracking-wide mb-3">
+                <span class="font-bold text-pink-400">LANGTECH</span>
+                <span class="text-white"> DEGREE PLANNING</span>
+            </h1>
+            <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-2xl sm:text-3xl md:text-4xl font-prompt mb-2">
+                <div class="flex flex-col items-end leading-[1] mr-2">
+                    <span class="font-bold text-white text-3xl sm:text-4xl md:text-5xl">1<sup class="text-base align-super">st</sup></span>
+                </div>
+                <span class="font-bold text-blue-200">ENTRANCE CHECKLIST</span>
+                <span class="text-white">FOR</span>
+                <span class="font-bold text-pink-400">FRESHMAN</span>
+            </div>
+        </div>
+        <!-- Responsive Entrance Checklist with Animation -->
+        <div id="entrance-checklist" class="bg-black p-6 md:p-10 flex flex-col gap-6 md:gap-8">
+            <div class="flex items-start gap-4 checklist-item opacity-0 translate-y-6 transition-all duration-700">
+                <div class="flex-shrink-0">
+                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-200 text-black font-bold text-xl">1</span>
+                </div>
+                <div>
+                    <span class="text-white font-prompt text-lg md:text-xl font-semibold">เป็นนิสิตคณะอักษรฯ ชั้นปีที่ 1</span>
+                </div>
+            </div>
+            <div class="flex items-start gap-4 checklist-item opacity-0 translate-y-6 transition-all duration-700">
+                <div class="flex-shrink-0">
+                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-200 text-black font-bold text-xl">2</span>
+                </div>
+                <div>
+                    <span class="text-white font-prompt text-lg md:text-xl font-semibold">
+                        เรียนวิชา <span class="text-pink-300">2209261 BASIC PROG NLP</span> และมีคะแนนเฉลี่ยวิชาไม่ต่ำกว่า <span class="font-bold">3.00</span>
+                    </span>
+                </div>
+            </div>
+            <div class="flex items-start gap-4 checklist-item opacity-0 translate-y-6 transition-all duration-700">
+                <div class="flex-shrink-0">
+                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-200 text-black font-bold text-xl">3</span>
+                </div>
+                <div>
+                    <span class="text-white font-prompt text-lg md:text-xl font-semibold">
+                        เรียนรายวิชา <span class="text-pink-300">2209161 INTRO LANG</span> ก่อนยื่นเข้าเอก
+                    </span>
+                </div>
+            </div>
+            <div class="flex items-start gap-4 checklist-item opacity-0 translate-y-6 transition-all duration-700">
+                <div class="flex-shrink-0">
+                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-blue-200 text-black font-bold text-xl">4</span>
+                </div>
+                <div>
+                    <span class="text-white font-prompt text-lg md:text-xl font-semibold">
+                        <span class="font-bold">(ถ้ามี)</span> นิสิตยื่นเข้าเอกเกิน 40 คน<br>
+                        <span class="text-blue-200">จะคัดเลือกจากผลการเรียนเฉลี่ยรวมของ <span class="text-pink-300">BASIC PROG NLP</span> และ <span class="text-pink-300">INTRO LANG</span></span>
+                    </span>
+                </div>
+            </div>
+            <div class="flex items-center justify-center mt-6 checklist-item opacity-0 translate-y-6 transition-all duration-700">
+                <span class="text-2xl md:text-3xl font-bold font-prompt text-white text-center" style="background: linear-gradient(90deg, #B8D7E4 0%, #FF7996 100%); background-clip:text; -webkit-background-clip:text; -webkit-text-fill-color:transparent; color: transparent;">
+                    YOU'RE <span class="text-pink-400">ONE OF US!</span>
+                </span>
+            </div>
+        </div>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const items = document.querySelectorAll('#entrance-checklist .checklist-item');
+            let delay = 0;
+            items.forEach((item, idx) => {
+                setTimeout(() => {
+                    item.classList.remove('opacity-0', 'translate-y-6');
+                    item.classList.add('opacity-100', 'translate-y-0');
+                }, delay);
+                delay += 1000; // slower: 1s per item
+            });
+        });
+        </script>
+    </div>
+</section>
+
+<!-- 2nd and 3rd Year Study Plan Section -->
+<section class="relative z-10 bg-black pb-16">
+  <div class="max-w-7xl mx-auto px-4 md:px-12 pt-8">
+    <!-- 2nd Year Heading -->
+    <div class="flex items-end gap-4 mt-2">
+      <div class="flex flex-col items-end">
+        <span class="font-bold text-white text-4xl sm:text-5xl md:text-6xl leading-none">2<sup class="text-base align-super">nd</sup></span>
+      </div>
+      <div>
+        <span class="font-bold text-pink-400 text-2xl sm:text-3xl md:text-4xl">SOPHOMORE</span>
+        <br>
+        <span class="font-bold text-blue-200 text-2xl sm:text-3xl md:text-4xl">STUDY PLAN</span>
+      </div>
+    </div>
+    <!-- 2nd Year Grid -->
+    <div class="mt-6 mb-16 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-0">
+      <!-- 1st semester -->
+      <div class="flex flex-col items-center md:items-end pr-0 md:pr-12">
+        <h3 class="font-bold text-2xl mb-3 mt-4 text-center md:text-right">1st semester</h3>
+        <ul class="text-lg text-white max-w-md text-left font-prompt space-y-1">
+          <li>2206333 การออกแบบระบบสำหรับงานสารสนเทศ<br>
+            <span class="text-[16px] text-gray-200">(System Design for Information Work)</span></li>
+          <li>2209308 ระบบเสียง<br>
+            <span class="text-[16px] text-gray-200">(Sound System)</span></li>
+          <li>2209304 ระบบไวยากรณ์<br>
+            <span class="text-[16px] text-gray-200">(Grammatical System)</span></li>
+        <li class="mt-2 text-blue-200">รวม 9 หน่วยกิต</li>
+        </ul>
+      </div>
+      <!-- 2nd semester -->
+      <div class="flex flex-col items-center md:items-start pl-0 md:pl-12 border-t-0 md:border-t-0 md:border-l-2 border-white md:h-auto">
+        <h3 class="font-bold text-2xl mb-3 mt-4 text-center md:text-left">2nd semester</h3>
+        <ul class="text-lg text-white max-w-md text-left font-prompt space-y-1">
+          <li>2206385 การจัดการฐานข้อมูลสำหรับมนุษยศาสตร์<br>
+            <span class="text-[16px] text-gray-200">(Database Management for the Humanities)</span></li>
+          <li>2209305 ความหมายในภาษา<br>
+            <span class="text-[16px] text-gray-200">(Meaning in Language)</span></li>
+          <li>2209372 ภาษาศาสตร์คอมพิวเตอร์เบื้องต้น<br>
+            <span class="text-[16px] text-gray-200">(Introduction to Computational Linguistics)</span></li>
+          <li class="mt-2 text-blue-200">รวม 9 หน่วยกิต</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 3rd Year Heading -->
+    <div class="flex items-end gap-4 mt-10">
+      <div class="flex flex-col items-end">
+        <span class="font-bold text-white text-4xl sm:text-5xl md:text-6xl leading-none">3<sup class="text-base align-super">rd</sup></span>
+      </div>
+      <div>
+        <span class="font-bold text-pink-400 text-2xl sm:text-3xl md:text-4xl">JUNIOR</span>
+        <br>
+        <span class="font-bold text-blue-200 text-2xl sm:text-3xl md:text-4xl">STUDY PLAN</span>
+      </div>
+    </div>
+    <!-- 3rd Year Grid -->
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-0">
+      <!-- 1st semester -->
+      <div class="flex flex-col items-center md:items-end pr-0 md:pr-12">
+        <h3 class="font-bold text-2xl mb-3 mt-4 text-center md:text-right">1st semester</h3>
+        <ul class="text-lg text-white max-w-md text-left font-prompt space-y-1">
+          <li>2206366 สถิติสำหรับการวิจัยด้านมนุษยศาสตร์<br>
+            <span class="text-[16px] text-gray-200">(Statistics for Humanities Research)</span></li>
+          <li>2209368 การวิเคราะห์ภาษาไทยตามแนวภาษาศาสตร์<br>
+            <span class="text-[16px] text-gray-200">(Linguistic Analysis of Thai)</span></li>
+          <li>XXXXXXX วิชาเลือกกลุ่มวิชาเชี่ยวชาญ 6 หน่วยกิต</li>
+        <li class="mt-2 text-blue-200">รวม 12 หน่วยกิต</li>
+        </ul>
+      </div>
+      <!-- 2nd semester -->
+      <div class="flex flex-col items-center md:items-start pl-0 md:pl-12 md:border-t-0 md:border-l-2 border-white md:h-auto">
+        <h3 class="font-bold text-2xl mb-3 mt-4 text-center md:text-left">2nd semester</h3>
+        <ul class="text-lg text-white max-w-md text-left font-prompt space-y-1">
+          <li>XXXXXXX วิชาเลือกกลุ่มวิชาเชี่ยวชาญ 9 หน่วยกิต</li>
+          <li>XXXXXXX วิชาโท 6 หน่วยกิต</li>
+          <li class="mt-2 text-blue-200">รวม 15 หน่วยกิต</li>
+        </ul>
+      </div>
+    </div>
+    <!-- 4th Year Heading -->
+    <div class="flex items-end gap-4 mt-10">
+      <div class="flex flex-col items-end">
+        <span class="font-bold text-white text-4xl sm:text-5xl md:text-6xl leading-none">4<sup class="text-base align-super">th</sup></span>
+      </div>
+      <div>
+        <span class="font-bold text-pink-400 text-2xl sm:text-3xl md:text-4xl">SENIOR</span>
+        <br>
+        <span class="font-bold text-blue-200 text-2xl sm:text-3xl md:text-4xl">STUDY PLAN</span>
+      </div>
+    </div>
+    <!-- 4th Year Grid -->
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-0">
+      <!-- 1st semester -->
+      <div class="flex flex-col items-center md:items-end pr-0 md:pr-12">
+        <h3 class="font-bold text-2xl mb-3 mt-4 text-center md:text-right">1st semester</h3>
+        <ul class="text-lg text-white max-w-md text-left font-prompt space-y-1">
+          <li>XXXXXXX วิชาเลือกกลุ่มวิชาเชี่ยวชาญ 3 หน่วยกิต<br></li>
+          <li>XXXXXXX วิชาบังคับเลือกกลุ่มวิชาข้อกำหนดเฉพาะ<br>
+            3 หน่วยกิต</li>
+          <li>XXXXXXX วิชาโท 6 หน่วยกิต</li>
+          <li class="mt-2 text-blue-200">รวม 12 หน่วยกิต</li>
+        </ul>
+      </div>
+      <!-- 2nd semester -->
+      <div class="flex flex-col items-center md:items-start pl-0 md:pl-12 md:border-t-0 md:border-l-2 border-white md:h-auto">
+        <h3 class="font-bold text-2xl mb-3 mt-4 text-center md:text-left">2nd semester</h3>
+        <ul class="text-lg text-white max-w-md text-left font-prompt space-y-1">
+          <li>XXXXXXX วิชาบังคับเลือกกลุ่มวิชาข้อกำหนดเฉพาะ<br>
+        3 หน่วยกิต</li>
+          <li>XXXXXXX วิชาโท 6 หน่วยกิต</li>
+          <li class="mt-2 text-blue-200">รวม 9 หน่วยกิต</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Elective Course Groups Section -->
+<section class="relative z-10 bg-black pb-16">
+  <div class="max-w-7xl mx-auto px-4 md:px-12 pt-12">
+    <!-- Section Title -->
+    <h2 class="text-center font-bold text-3xl sm:text-4xl md:text-4xl text-pink-400 mb-2">กลุ่มวิชาเลือก</h2>
+    <p class="text-white opacity-90 text-lg font-prompt mb-6 mt-4 md:mt-0 text-center md:text-right text-sm md:text-lg">
+        <span class="text-base font-normal opacity-100">*</span> บางรายวิชาไม่ได้เปิดทุกปีการศึกษา<br>
+        ควรตรวจสอบกับอาจารย์ที่ปรึกษา
+    </p>
+    <!-- Course Groups Columns -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 border-t-0 md:border-x-0">
+    <!-- Linguistics -->
+    <div class="flex flex-col items-center">
+      <h3 class="text-xl sm:text-2xl font-bold text-blue-200 mt-2 mb-1 text-center">LINGUISTICS</h3>
+      <h4 class="text-lg font-bold text-blue-200 mb-4 text-center">(หมวดภาษาศาสตร์)</h4>
+      <ul class="text-white text-base md:text-[15px] font-prompt space-y-1 max-w-xs text-left">
+        <li>2200158 ภาษาศาสตร์ประยุกต์เพื่อการสอนภาษาไทยในฐานะภาษาต่างประเทศ<br>
+        <span class="text-xs text-gray-300">(Applied Linguistics for Teaching Thai as a Foreign Language)</span></li>
+        <li>2209309 การแปรและการเปลี่ยนแปลงในภาษา<br>
+        <span class="text-xs text-gray-300">(Variation and Change in Language)</span></li>
+        <li>2209344 ภาษาศาสตร์กับการแปล<br>
+        <span class="text-xs text-gray-300">(Linguistics and Translation)</span></li>
+        <li>2209369 ภาษาตระกูลจ้วง-ไท<br>
+        <span class="text-xs text-gray-300">(Kra-Dai Languages)</span></li>
+        <li>2209370 ภาษาและความคิด<br>
+        <span class="text-xs text-gray-300">(Language and Mind)</span></li>
+        <li>2209371 ภาษาศาสตร์ภาษาโรมานซ์เบื้องต้น<br>
+        <span class="text-xs text-gray-300">(Introduction to Romance Linguistics)</span></li>
+        <li>2209373 ภาษาและวัฒนธรรม<br>
+        <span class="text-xs text-gray-300">(Language and Culture)</span></li>
+        <li>2209376 คลังข้อมูลภาษา<br>
+        <span class="text-xs text-gray-300">(Language Corpora)</span></li>
+        <li>2209377 ภาษาศาสตร์ภาคสนาม<br>
+        <span class="text-xs text-gray-300">(Field Linguistics)</span></li>
+        <li>2209378 ภาษาในการสื่อสารทางการตลาด<br>
+        <span class="text-xs text-gray-300">(Language and Marketing Communications)</span></li>
+        <li>2209379 ภาษากับเพศ<br>
+        <span class="text-xs text-gray-300">(Language and Sex)</span></li>
+        <li>2209607 ภาษาศาสตร์เชิงคลินิก<br>
+        <span class="text-xs text-gray-300">(Clinical Linguistics)</span></li>
+      </ul>
+    </div>
+    <!-- Information Studies -->
+    <div class="flex flex-col items-center md:border-l-2 md:border-r-2 border-white">
+      <h3 class="text-xl sm:text-2xl font-bold text-blue-200 mt-2 mb-1 text-center">INFORMATION STUDIES</h3>
+      <h4 class="text-lg font-bold text-blue-200 mb-4 text-center">(หมวดสารสนเทศศึกษา)</h4>
+      <ul class="text-white text-base md:text-[15px] font-prompt space-y-1 max-w-xs text-left">
+        <li>2206216 ผู้ใช้และบริการสารสนเทศ<br>
+        <span class="text-xs text-gray-300">(Information Users and Services)</span></li>
+        <li>2206285 การแปลงทรัพยากรสารสนเทศให้อยู่ในรูปดิจิทัล<br>
+        <span class="text-xs text-gray-300">(Digitization of Information Resources)</span></li>
+        <li>2206289 การสื่อสารข้อมูลและเครือข่ายในงานสารสนเทศ<br>
+        <span class="text-xs text-gray-300">(Data Communications and Networking in Information Work)</span></li>
+        <li>2206290 พื้นฐานมนุษยศาสตร์ดิจิทัล<br>
+        <span class="text-xs text-gray-300">(Introduction to Digital Humanities)</span></li>
+        <li>2206356 การจัดการและจัดระบบทรัพยากรสารสนเทศห้องสมุด<br>
+        <span class="text-xs text-gray-300">(Library Collection Management and Organization)</span></li>
+        <li>2206384 การจัดการสารสนเทศในสำนักงาน<br>
+        <span class="text-xs text-gray-300">(Office Information Management)</span></li>
+        <li>2206386 การออกแบบส่วนต่อประสานกับผู้ใช้ในงานสารสนเทศ<br>
+        <span class="text-xs text-gray-300">(User Interface Design in Information Work)</span></li>
+        <li>2206415 การตลาดและการประชาสัมพันธ์สำหรับองค์การสารสนเทศ<br>
+        <span class="text-xs text-gray-300">(Marketing and Public Relations for Information Organizations)</span></li>
+        <li>2206442 เครื่องมือสำหรับมนุษยศาสตร์ดิจิทัล<br>
+        <span class="text-xs text-gray-300">(Tools for Digital Humanities)</span></li>
+        <li>2206489 การศึกษาอิสระ<br>
+        <span class="text-xs text-gray-300">(Independent Study)</span></li>
+      </ul>
+    </div>
+    <!-- Computational Linguistics -->
+    <div class="flex flex-col items-center">
+      <h3 class="text-xl sm:text-2xl font-bold text-blue-200 mt-2 mb-1 text-center">COMPUTATIONAL LINGUISTICS</h3>
+      <h4 class="text-lg font-bold text-blue-200 mb-4 text-center">(หมวดภาษาศาสตร์คอมพิวเตอร์)</h4>
+      <ul class="text-white text-base md:text-[15px] font-prompt space-y-1 max-w-xs text-left">
+        <li>2209381 เทคโนโลยีวัจน<br>
+        <span class="text-xs text-gray-300">(Speech Technology)</span></li>
+        <li>2209382 การแปลภาษาด้วยคอมพิวเตอร์<br>
+        <span class="text-xs text-gray-300">(Machine Translation)</span></li>
+        <li>2209384 การเข้าใจภาษาธรรมชาติ<br>
+        <span class="text-xs text-gray-300">(Natural Language Understanding)</span></li>
+        <li>2209390 เรื่องคัดเฉพาะทางเทคโนโลยีภาษา<br>
+        <span class="text-xs text-gray-300">(Selected Topics in Language Technology)</span></li>
+      </ul>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- Project Course Group Section -->
+<section class="relative z-10 bg-black pb-16">
+    <div class="max-w-7xl mx-auto px-4 md:px-12 pt-12">
+        <!-- Section Title -->
+        <h2 class="text-center font-bold text-3xl sm:text-4xl md:text-4xl text-pink-400 mb-2">
+            กลุ่มวิชาข้อกำหนดเฉพาะ<br>(Project)
+        </h2>
+        <p class="text-center md:text-right text-white opacity-90 text-base md:text-lg font-prompt mb-6 mt-4 md:mt-0">
+            <span class="text-base font-normal opacity-100">*</span> เลือกลง 2 ตัว ข้ามหมวดได้
+        </p>
+        <!-- Project Courses Grid -->
+        <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-0">
+            <!-- Left: Language Technology -->
+            <div class="flex flex-col items-center md:items-end pr-0 md:pr-12">
+                <ul class="text-xl text-white max-w-xl text-left font-prompt space-y-3">
+                    <li>
+                        2209491 โครงการเทคโนโลยีภาษา 1<br>
+                        <span class="text-base text-gray-200">(Project in Language Technology I)</span>
+                    </li>
+                    <li>
+                        2209492 โครงการเทคโนโลยีภาษา 2<br>
+                        <span class="text-base text-gray-200">(Project in Language Technology II)</span>
+                    </li>
+                </ul>
+            </div>
+            <!-- Right: Information Studies -->
+            <div class="flex flex-col items-center md:items-start pl-0 md:pl-12 border-t-0 md:border-t-0 md:border-l-4 border-white md:h-auto">
+                <ul class="text-xl text-white max-w-xl text-left font-prompt space-y-3">
+                    <li>
+                        2206491 โครงการสารสนเทศศึกษา 1<br>
+                        <span class="text-base text-gray-200">(Project in Information Studies I)</span>
+                    </li>
+                    <li>
+                        2206492 โครงการสารสนเทศศึกษา 2<br>
+                        <span class="text-base text-gray-200">(Project in Information Studies II)</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Credit Structure Diagram Section (with lines and styled button) -->
+<section class="relative z-10 bg-black pb-16 overflow-x-auto">
+  <div class="max-w-7xl mx-auto px-4 md:px-12 pt-12 relative">
+    <!-- Section Title -->
+    <h2 class="text-center font-bold text-3xl sm:text-4xl md:text-4xl text-pink-400 mb-8">
+      โครงสร้างหน่วยกิต
+    </h2>
+    <!-- Top Row: Major + Minor (closer together) -->
+    <div class="flex flex-col md:flex-row w-full justify-center gap-y-8 md:gap-20 mb-10 relative z-10">
+      <!-- Major -->
+      <div class="flex flex-col items-center w-full md:w-auto" style="min-width:260px;">
+        <div class="rounded-2xl border-4 border-blue-200 bg-black px-8 py-6 w-full max-w-[300px] text-center">
+          <span class="text-pink-400 text-2xl font-bold">วิชาเอก</span><br>
+          <span class="text-white text-xl font-bold">(48 หน่วยกิต)</span><br>
+          <br>
+          <span class="text-blue-200 text-lg font-bold">กลุ่มวิชาพื้นฐาน <br> (18 หน่วยกิต)</span><br>
+          <span class="text-white text-lg">วิชาบังคับ 18 หน่วยกิต</span><br>
+          <br>
+          <span class="text-blue-200 text-lg font-bold">กลุ่มวิชาข้อกำหนดเฉพาะ <br> (12 หน่วยกิต)</span><br>
+          <span class="text-white text-lg">วิชาบังคับ 6 หน่วยกิต</span><br>
+          <span class="text-white text-lg">วิชาเลือก 6 หน่วยกิต</span>
+          <span class="text-xs text-gray-200">* Project</span><br>
+          <span class="text-white text-lg"><br></span><br>
+          <span class="text-blue-200 text-lg font-bold">กลุ่มวิชาเชี่ยวชาญ <br> (18 หน่วยกิต)</span><br>
+          <span class="text-white text-lg">วิชาบังคับเลือก 9 หน่วยกิต</span><br>
+          <span class="text-white text-lg">วิชาเลือก 9 หน่วยกิต</span><br>
+          <span class="text-xs text-gray-200">* จากกลุ่มวิชาเลือกหรือนอกคณะ</span>
+        </div>
+      </div>
+      <!-- Minor -->
+      <div class="flex flex-col items-center w-full md:w-auto md:ml-0 mt-6 md:mt-0" style="min-width:260px;">
+        <div class="rounded-2xl border-4 border-blue-200 bg-black px-8 py-6 w-full max-w-[300px] text-center">
+          <span class="text-pink-400 text-2xl font-bold">วิชาโท</span><br>
+          <span class="text-white text-xl font-bold">(18 หน่วยกิต)</span><br>
+          <span class="text-xs text-gray-200">* ยกเว้น วิชาโทภาษาศาสตร์<br>
+          วิชาโทสารสนเทศศึกษา<br>
+          วิชาโทมนุษยศาสตร์ดิจิทัล</span>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Button (styled as previous page) -->
+    <div class="w-full flex justify-center mt-14 relative z-10">
+        <a href="#"
+            class="flex items-center justify-center gap-3 px-6 py-4 rounded-full font-prompt text-lg md:text-xl font-medium text-white transition-all"
+            style="background: linear-gradient(90deg, #FF7996 0%, #9ED8E5 100%); min-width: 0; width: auto; max-width: 340px;"
+            onmouseover="this.style.background='#FFF'; this.style.color='#000';"
+            onmouseout="this.style.background='linear-gradient(90deg, #FF7996 0%, #9ED8E5 100%)'; this.style.color='#FFF';"
+        >
+            <span class="w-full text-center">ดาวน์โหลดโครงสร้างหลักสูตรและหน่วยกิตทางการ</span>
+            <span class="text-2xl ml-2">&#8594;</span>
+        </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- Animated Slide Banner -->
+<div class="relative w-full h-10 overflow-hidden mt-8 bg-white">
+    <div class="absolute inset-0 flex items-center h-full">
+        <div class="animate-slide-banner whitespace-nowrap font-bold bg-gradient-to-r from-pink-400 via-blue-400 to-pink-400 bg-clip-text text-transparent font-prompt" style="font-size:12px; font-weight:700;">
+            <span>
+                <b>LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA • &nbsp;</b>
+            </span>
+            <span>
+                <b>LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA</b>
+            </span>
+        </div>
+    </div>
+</div>
+<style>
+@keyframes slideBanner {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+.animate-slide-banner {
+    display: inline-block;
+    min-width: 200%;
+    animation: slideBanner 15s linear infinite;
+}
+</style>
+
+<!-- Footer (reuse homepage code) -->
+<footer class="bg-black text-white py-12 px-6 font-prompt" style="font-family: 'Prompt', sans-serif;">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-8 items-start md:items-start">
+        <div class="flex flex-col items-center md:items-start gap-6 md:ml-20 mt-[-20px] w-full md:w-auto">
+            <img src="../LangTechLogo.png" alt="LangTech Logo" class="h-20 md:h-24" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+            <div class="flex space-x-6 md:space-x-8 mt-2 justify-center md:justify-start w-full">
+                <a href="#" aria-label="Facebook" class="hover:text-pink-400 text-white text-xl"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/langtech.artscu/" aria-label="Instagram" class="hover:text-pink-400 text-white text-xl"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube" class="hover:text-pink-400 text-white text-xl"><i class="fab fa-youtube"></i></a>
+                <a href="#" aria-label="TikTok" class="hover:text-pink-400 text-white text-xl"><i class="fab fa-tiktok"></i></a>
+                <a href="#" aria-label="X" class="hover:text-pink-400 text-white text-xl"><i class="fab fa-x-twitter"></i></a>
+            </div>
+        </div>
+        <div class="text-sm space-y-4 font-prompt md:mr-20 mt-8 md:mt-0 w-full md:w-auto text-center md:text-left" style="font-family: 'Prompt', sans-serif;">
+            <p>
+                คณะอักษรศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย<br/>
+                254 ถนนพญาไท แขวงวังใหม่ เขตปทุมวัน กรุงเทพฯ 10330
+            </p>
+            <p class="flex items-center gap-2 justify-center md:justify-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-white" viewBox="0 0 24 24">
+                    <path d="M2 4a2 2 0 012-2h16a2 2 0 012 2v2H2V4zm0 4h20v12a2 2 0 01-2 2H4a2 2 0 01-2-2V8zm3 2v2h14v-2H5z" />
+                </svg>
+                arts@chula.ac.th
+            </p>
+            <p class="flex items-center gap-2 justify-center md:justify-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-white" viewBox="0 0 24 24">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.72 19.72 0 0 1 3.08 4.18 2 2 0 0 1 5 2h3a2 2 0 0 1 2 1.72c.13 1.05.37 2.07.72 3.06a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.59 6.59l1.27-1.27a2 2 0 0 1 2.11-.45c.99.35 2.01.59 3.06.72A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                +6622184870
+            </p>
+        </div>
+    </div>
+    <div class="text-center text-xs text-gray-400 mt-10 mb-8 font-prompt">
+        © 2025 Faculty of Arts, Chulalongkorn University. All Rights Reserved.
+    </div>
+</footer>
+
+<script>
+    // Mobile menu open/close (reuse same as homepage)
+    const mobileMenuBtn = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    function openMobileMenu() {
+        mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+        mobileMenu.classList.add('opacity-100');
+    }
+    function closeMobileMenu() {
+        mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+        mobileMenu.classList.remove('opacity-100');
+    }
+    mobileMenuBtn.addEventListener('click', openMobileMenu);
+    mobileMenuClose.addEventListener('click', closeMobileMenu);
+    document.addEventListener('click', function(e) {
+        if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) closeMobileMenu();
+    });
+    mobileMenu.addEventListener('click', function(e) { e.stopPropagation(); });
+    function setupMobileDropdown(toggleId, menuId) {
+        const toggle = document.getElementById(toggleId);
+        const menu = document.getElementById(menuId);
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            menu.classList.toggle('hidden');
+        });
+    }
+    setupMobileDropdown('mobile-dropdown-toggle', 'mobile-dropdown-menu');
+    setupMobileDropdown('mobile-life-toggle', 'mobile-life-menu');
+    setupMobileDropdown('mobile-review-toggle', 'mobile-review-menu');
+    // Desktop Dropdowns
+    function setupDropdown(toggleId, menuId) {
+      const toggle = document.getElementById(toggleId);
+      const menu = document.getElementById(menuId);
+      document.addEventListener('click', function(e) {
+        if (toggle.contains(e.target)) {
+          e.preventDefault();
+          menu.classList.toggle('opacity-100');
+          menu.classList.toggle('pointer-events-auto');
+          menu.classList.toggle('opacity-0');
+          menu.classList.toggle('pointer-events-none');
+        } else if (!menu.contains(e.target)) {
+          menu.classList.add('opacity-0');
+          menu.classList.remove('opacity-100');
+          menu.classList.add('pointer-events-none');
+          menu.classList.remove('pointer-events-auto');
+        }
+      });
+    }
+    setupDropdown('dropdown-toggle', 'dropdown-menu');
+    setupDropdown('dropdown-life-toggle', 'dropdown-life-menu');
+    setupDropdown('dropdown-review-toggle', 'dropdown-review-menu');
+</script>
+</body>
+</html>

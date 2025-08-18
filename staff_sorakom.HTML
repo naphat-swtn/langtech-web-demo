@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What is LangTech? | LangTech Chula</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Prompt', sans-serif; }
+  </style>
+</head>
+<body class="bg-black text-white font-prompt text-base leading-relaxed">
+
+<!-- Navbar (Responsive) -->
+<nav class="bg-black bg-opacity-75 sticky top-0 z-50 font-prompt">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-4 md:px-14 py-3">
+        <!-- Logo -->
+        <div class="flex-shrink-0">
+            <img src="LangTechLogo.png" alt="LangTech Logo" class="h-12 md:h-16" />
+        </div>
+        <!-- Hamburger (Mobile) -->
+        <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none text-2xl">
+            <svg class="h-8 w-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+        </button>
+        <!-- Desktop Menu -->
+        <ul class="hidden md:flex gap-3 text-white px-2 md:px-6 items-center">
+            <li><a href="Homepage.HTML" class="hover:text-pink-400 px-3 py-2">หน้าแรก</a></li>
+            <li><a href="admission.HTML" class="hover:text-pink-400 px-3 py-2">แอดมิชชั่น</a></li>
+            <li class="relative" id="dropdown-course">
+                <a href="#" id="dropdown-toggle" class="hover:text-pink-400 px-3 py-2 flex items-center">
+                    หลักสูตร ▾
+                </a>
+                <ul id="dropdown-menu" class="absolute left-0 mt-2 w-56 bg-black border border-gray-800 rounded shadow-lg opacity-0 pointer-events-none transition-opacity duration-200 z-50">
+                    <li>
+                        <a href="WhatIsLangTech.HTML" class="block px-4 py-2 hover:bg-pink-900 hover:text-white rounded-t">
+                            แลงเทคคืออะไร ?
+                        </a>
+                    </li>
+                    <li>
+                        <a href="LangTechDegreePlanning.HTML" class="block px-4 py-2 hover:bg-pink-900 hover:text-white rounded-b">
+                            รูปแบบหลักสูตรและวิชา
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="relative" id="dropdown-life">
+                <a href="#" id="dropdown-life-toggle" class="hover:text-pink-400 px-4 py-2 flex items-center">
+                    ชีวิตในรั้วแลงเทค ▾
+                </a>
+                <ul id="dropdown-life-menu" class="absolute left-0 mt-2 w-56 bg-black border border-gray-800 rounded shadow-lg opacity-0 pointer-events-none transition-opacity duration-200 z-50">
+                    <li>
+                        <a href="LifeAtLangTech.HTML" class="block px-4 py-2 hover:bg-pink-900 hover:text-white rounded-t">
+                            กิจกรรม
+                        </a>
+                    </li>
+                    <li>
+                        <a href="SeniorProject.HTML" class="block px-4 py-2 hover:bg-pink-900 hover:text-white rounded-b">
+                            ซีเนียร์โปรเจค
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="relative" id="dropdown-review">
+                <a href="#" id="dropdown-review-toggle" class="hover:text-pink-400 px-4 py-2 flex items-center">
+                    รีวิว ▾
+                </a>
+                <ul id="dropdown-review-menu" class="absolute left-0 mt-2 w-56 bg-black border border-gray-800 rounded shadow-lg opacity-0 pointer-events-none transition-opacity duration-200 z-50">
+                    <li>
+                        <a href="SeniorReview.HTML" class="block px-4 py-2 hover:bg-pink-900 hover:text-white rounded-t">
+                            รีวิวจากรุ่นพี่
+                        </a>
+                    </li>
+                    <li>
+                        <a href="Career.HTML" class="block px-4 py-2 hover:bg-pink-900 hover:text-white rounded-b">
+                            อาชีพและอนาคต
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li><a href="Teacher_Staff.HTML" class="hover:text-pink-400 px-4 py-2">บุคลากร</a></li>
+        </ul>
+    </div>
+
+    <!-- Mobile Menu (hidden by default) -->
+    <div id="mobile-menu" class="md:hidden fixed inset-0 bg-black bg-opacity-95 z-50 flex flex-col items-center pt-24 space-y-6 text-lg font-prompt transition-all duration-300 opacity-0 pointer-events-none" style="font-family: 'Prompt', sans-serif;">
+        <button id="mobile-menu-close" class="absolute top-6 right-6 text-white text-3xl focus:outline-none">
+            &times;
+        </button>
+        <a href="Homepage.HTML" class="hover:text-pink-400 px-4 py-2 block w-full text-center">หน้าแรก</a>
+        <a href="admission.HTML" class="hover:text-pink-400 px-4 py-2 block w-full text-center">แอดมิชชั่น</a>
+        <!-- Mobile Dropdown: หลักสูตร -->
+        <div class="w-full flex flex-col items-center">
+            <button id="mobile-dropdown-toggle" class="hover:text-pink-400 px-4 py-2 flex items-center w-full justify-center">
+                หลักสูตร ▾
+            </button>
+            <div id="mobile-dropdown-menu" class="flex flex-col w-full items-center space-y-1 hidden">
+                <a href="WhatIsLangTech.HTML" class="block px-4 py-2 hover:bg-pink-900 hover:text-white w-full text-center">แลงเทคคืออะไร ?</a>
+                <a href="LangTechDegreePlanning.HTML" class="block px-4 py-2 hover:bg-pink-900 hover:text-white w-full text-center">รูปแบบหลักสูตรและวิชา</a>
+            </div>
+        </div>
+        <!-- Mobile Dropdown: ชีวิตในรั้วแลงเทค -->
+        <div class="w-full flex flex-col items-center">
+            <button id="mobile-life-toggle" class="hover:text-pink-400 px-4 py-2 flex items-center w-full justify-center">
+                ชีวิตในรั้วแลงเทค ▾
+            </button>
+            <div id="mobile-life-menu" class="flex flex-col w-full items-center space-y-1 hidden">
+                <a href="LifeAtLangTech.HTML" class="block px-4 py-2 hover:bg-pink-900 hover:text-white w-full text-center">กิจกรรม</a>
+                <a href="SeniorProject.HTML" class="block px-4 py-2 hover:bg-pink-900 hover:text-white w-full text-center">ซีเนียร์โปรเจค</a>
+            </div>
+        </div>
+        <!-- Mobile Dropdown: รีวิว -->
+        <div class="w-full flex flex-col items-center">
+            <button id="mobile-review-toggle" class="hover:text-pink-400 px-4 py-2 flex items-center w-full justify-center">
+                รีวิว ▾
+            </button>
+            <div id="mobile-review-menu" class="flex flex-col w-full items-center space-y-1 hidden">
+                <a href="SeniorReview.HTML" class="block px-4 py-2 hover:bg-pink-900 hover:text-white w-full text-center">รีวิวจากรุ่นพี่</a>
+                <a href="Career.HTML" class="block px-4 py-2 hover:bg-pink-900 hover:text-white w-full text-center">อาชีพและอนาคต</a>
+            </div>
+        </div>
+        <a href="Teacher_Staff.HTML" class="hover:text-pink-400 px-4 py-2 block w-full text-center">บุคลากร</a>
+    </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="max-w-7xl mx-auto px-4 md:px-12 py-6 md:py-8 text-white text-base font-prompt">
+  <span class="opacity-70">หน้าหลัก</span>
+  <span class="mx-2">/</span>
+  <span>บุคลากร</span>
+</div>
+
+<!-- Main Content -->
+<main class="flex-1"></main>
+    <div class="max-w-7xl mx-auto px-4 md:px-14 pt-8 pb-10">
+        <a href="Teacher_Staff.HTML" class="inline-block mb-6 text-white text-opacity-80 hover:text-[#B8D7E4] font-prompt transition">&larr; กลับหน้าอาจารย์</a>
+        <h1 class="text-[#B8D7E4] font-bold text-3xl md:text-4xl mb-10">Teachers &amp; Staff</h1>
+        <div class="flex flex-col md:flex-row gap-10 items-start">
+            <!-- Left: Image, Name, Tag -->
+            <div class="flex flex-col items-center w-full md:w-[260px]">
+                <img src="sorakom.jpeg" alt="Sorakom Dissamana" class="rounded-2xl w-[260px] aspect-[3/4] object-cover shadow-lg" />
+                <div class="mt-4 text-center">
+                    <span class="block text-white font-bold text-lg">SORAKOM DISSAMANA</span>
+                    <span class="block text-white text-base font-prompt mb-2">อาจารย์ ดร.สรคม ดิสสะมาน</span>
+                </div>
+                <div class="mt-2 flex flex-wrap justify-center gap-2">
+                    <span class="px-4 py-1 bg-[#3b3b43] rounded-full text-pink-400 text-sm font-semibold">#สารสนเทศ</span>
+                </div>
+            </div>
+            <!-- Right: Details -->
+            <div class="flex-1 w-full">
+                <div class="text-white font-bold text-xl mb-3">SORAKOM DISSAMANA</div>
+                <div class="text-white text-base font-prompt mb-2">อาจารย์ ดร.สรคม ดิสสะมาน</div>
+                <div class="mb-5">
+                    <div class="text-white font-semibold mb-2">Teaching:</div>
+                    <ul class="text-white text-base font-prompt list-disc list-inside space-y-1">
+                        <li>2206366 สถิติเพื่อการวิจัยด้านมนุษยศาสตร์ (Statistics for Humanities Research)</li>
+                        <li>2206289 การสื่อสารข้อมูลและเครือข่ายในงานสารสนเทศ (Data Communications and Networking in Information Work)</li>
+                    </ul>
+                </div>
+                <div class="mb-5">
+                    <div class="text-white font-semibold mb-2">Education:</div>
+                    <ul class="text-white text-base font-prompt list-disc list-inside space-y-1">
+                        <li>Ph.D., Chulalongkorn University</li>
+                    </ul>
+                </div>
+                <div>
+                    <span class="text-white font-semibold">Email:</span>
+                    <a class="text-[#B8D7E4] hover:underline ml-1" href="mailto:sorakom.d@chula.ac.th">sorakom.d@chula.ac.th</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+  <!-- Animated Slide Banner -->
+<div class="relative w-full h-10 overflow-hidden mt-8 bg-white">
+    <div class="absolute inset-0 flex items-center h-full">
+        <div class="animate-slide-banner whitespace-nowrap font-bold bg-gradient-to-r from-pink-400 via-blue-400 to-pink-400 bg-clip-text text-transparent font-prompt" style="font-size:12px; font-weight:700;">
+            <span>
+                <b>LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA • &nbsp;</b>
+            </span>
+            <span>
+                <b>LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA &nbsp; • &nbsp; LANGTECH CHULA</b>
+            </span>
+        </div>
+    </div>
+</div>
+<style>
+@keyframes slideBanner {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+.animate-slide-banner {
+    display: inline-block;
+    min-width: 200%;
+    animation: slideBanner 15s linear infinite;
+}
+</style>
+
+<!-- Footer (reuse homepage code) -->
+<footer class="bg-black text-white py-12 px-6 font-prompt" style="font-family: 'Prompt', sans-serif;">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-8 items-start md:items-start">
+        <div class="flex flex-col items-center md:items-start gap-6 md:ml-20 mt-[-20px] w-full md:w-auto">
+            <img src="../LangTechLogo.png" alt="LangTech Logo" class="h-20 md:h-24" />
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+            <div class="flex space-x-6 md:space-x-8 mt-2 justify-center md:justify-start w-full">
+                <a href="#" aria-label="Facebook" class="hover:text-pink-400 text-white text-xl"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/langtech.artscu/" aria-label="Instagram" class="hover:text-pink-400 text-white text-xl"><i class="fab fa-instagram"></i></a>
+                <a href="#" aria-label="YouTube" class="hover:text-pink-400 text-white text-xl"><i class="fab fa-youtube"></i></a>
+                <a href="#" aria-label="TikTok" class="hover:text-pink-400 text-white text-xl"><i class="fab fa-tiktok"></i></a>
+                <a href="#" aria-label="X" class="hover:text-pink-400 text-white text-xl"><i class="fab fa-x-twitter"></i></a>
+            </div>
+        </div>
+        <div class="text-sm space-y-4 font-prompt md:mr-20 mt-8 md:mt-0 w-full md:w-auto text-center md:text-left" style="font-family: 'Prompt', sans-serif;">
+            <p>
+                คณะอักษรศาสตร์ จุฬาลงกรณ์มหาวิทยาลัย<br/>
+                254 ถนนพญาไท แขวงวังใหม่ เขตปทุมวัน กรุงเทพฯ 10330
+            </p>
+            <p class="flex items-center gap-2 justify-center md:justify-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-white" viewBox="0 0 24 24">
+                    <path d="M2 4a2 2 0 012-2h16a2 2 0 012 2v2H2V4zm0 4h20v12a2 2 0 01-2 2H4a2 2 0 01-2-2V8zm3 2v2h14v-2H5z" />
+                </svg>
+                arts@chula.ac.th
+            </p>
+            <p class="flex items-center gap-2 justify-center md:justify-start">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 fill-white" viewBox="0 0 24 24">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.72 19.72 0 0 1 3.08 4.18 2 2 0 0 1 5 2h3a2 2 0 0 1 2 1.72c.13 1.05.37 2.07.72 3.06a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.59 6.59l1.27-1.27a2 2 0 0 1 2.11-.45c.99.35 2.01.59 3.06.72A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                +6622184870
+            </p>
+        </div>
+    </div>
+    <div class="text-center text-xs text-gray-400 mt-10 mb-8 font-prompt">
+        © 2025 Faculty of Arts, Chulalongkorn University. All Rights Reserved.
+    </div>
+</footer>
+
+<script>
+    // Mobile menu open/close (reuse same as homepage)
+    const mobileMenuBtn = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuClose = document.getElementById('mobile-menu-close');
+    function openMobileMenu() {
+        mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
+        mobileMenu.classList.add('opacity-100');
+    }
+    function closeMobileMenu() {
+        mobileMenu.classList.add('opacity-0', 'pointer-events-none');
+        mobileMenu.classList.remove('opacity-100');
+    }
+    mobileMenuBtn.addEventListener('click', openMobileMenu);
+    mobileMenuClose.addEventListener('click', closeMobileMenu);
+    document.addEventListener('click', function(e) {
+        if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) closeMobileMenu();
+    });
+    mobileMenu.addEventListener('click', function(e) { e.stopPropagation(); });
+    function setupMobileDropdown(toggleId, menuId) {
+        const toggle = document.getElementById(toggleId);
+        const menu = document.getElementById(menuId);
+        toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            menu.classList.toggle('hidden');
+        });
+    }
+    setupMobileDropdown('mobile-dropdown-toggle', 'mobile-dropdown-menu');
+    setupMobileDropdown('mobile-life-toggle', 'mobile-life-menu');
+    setupMobileDropdown('mobile-review-toggle', 'mobile-review-menu');
+    // Desktop Dropdowns
+    function setupDropdown(toggleId, menuId) {
+      const toggle = document.getElementById(toggleId);
+      const menu = document.getElementById(menuId);
+      document.addEventListener('click', function(e) {
+        if (toggle.contains(e.target)) {
+          e.preventDefault();
+          menu.classList.toggle('opacity-100');
+          menu.classList.toggle('pointer-events-auto');
+          menu.classList.toggle('opacity-0');
+          menu.classList.toggle('pointer-events-none');
+        } else if (!menu.contains(e.target)) {
+          menu.classList.add('opacity-0');
+          menu.classList.remove('opacity-100');
+          menu.classList.add('pointer-events-none');
+          menu.classList.remove('pointer-events-auto');
+        }
+      });
+    }
+    setupDropdown('dropdown-toggle', 'dropdown-menu');
+    setupDropdown('dropdown-life-toggle', 'dropdown-life-menu');
+    setupDropdown('dropdown-review-toggle', 'dropdown-review-menu');
+</script>
+</body>
+</html>
